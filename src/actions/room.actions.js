@@ -9,10 +9,10 @@ const axios = require('axios');
 //================================== STORE ACTIONS ====================>
 
 export const POPULATE_ROOM_DATA = 'POPULATE_ROOM_DATA';
-export const populateRoomData = roomData => {
+export const populateRoomData = roomData => ({
   type:POPULATE_ROOM_DATA,
   roomData
-}
+});
 
 
 
@@ -20,7 +20,6 @@ export const populateRoomData = roomData => {
 
 // Retrieve current RoomInformation
 export const retrieveRoomInfo = (urlname) => dispatch => {
-  console.log('retrieving');
   dispatch(setLoading());
   axios({
     method:'GET',

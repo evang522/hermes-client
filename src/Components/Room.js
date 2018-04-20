@@ -4,6 +4,7 @@ import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import {retrieveRoomInfo} from '../actions/room.actions';
 import ChatContainer from './ChatContainer';
 import MessageInput from './MessageInput';
+import ChannelName from './ChannelName';
 
 export class Room extends React.Component {
   componentDidMount() {
@@ -12,12 +13,14 @@ export class Room extends React.Component {
   }
   render() {
 
+    const channels = this.props.channels.map(channel => <ChannelName name={channel.title} />);
+
     return (
 
         <main>
           <div className='sidebar-container'>
             <div className='room-title'>
-              Boat Room
+              {this.props.roomTitle ? this.props.roomTitle : ''}
             </div>
             <div className='channel-title'>
               #Sales
@@ -25,9 +28,10 @@ export class Room extends React.Component {
             <div className='channel-list-container'>
               <h3> Channels:</h3>
               <ul className='channel-list-ul'>
-                <li>Funzos</li>
+                {/* <li>Funzos</li>
                 <li>Meetups</li>
-                <li>Sales</li>
+                <li>Sales</li> */}
+                {channels}
               </ul>
             </div>
           </div>
@@ -66,4 +70,11 @@ export class Room extends React.Component {
   }
 }
 
-export default connect()(Room);
+const mapStateToProps = state => ({
+  roomTitle: state.room.title,
+  channels: state.room.channels,
+  urlname: state.room.urlname,
+  members: state.room.members
+});
+
+export default connect(mapStateToProps)(Room);

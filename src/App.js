@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import ChatContainer from './Components/ChatContainer';
+import MessageInput from './Components/MessageInput';
+
 import './App.css';
 
 class App extends Component {
@@ -52,6 +54,7 @@ class App extends Component {
         </Navbar>
             </div>
             <ChatContainer/>
+          <MessageInput/>
           </div>
         </main>
       </div>

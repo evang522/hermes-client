@@ -1,0 +1,42 @@
+.chat-message-container {
+  width:97%;
+  background-color:#EEEEEE;
+  padding:.8em;
+  border-radius:10px;
+  margin:.5em auto;
+  min-height:5em;
+}
+
+
+.message-container {
+  display:flex;
+  flex-direction:row;
+}
+
+
+.chat-message-avatar {
+  padding:.5em;
+}
+.avatar {
+  background-color:black;
+  width:3em;
+  height:3em;
+  border-radius:5em;
+}
+
+
+.chat-message-body-container {
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  margin-left:1em;
+}
+
+.chat-jumbo-container {
+  height:60em;
+  overflow-y:scroll;
+}
+
+.navbar {
+  margin-bottom:0;
+}

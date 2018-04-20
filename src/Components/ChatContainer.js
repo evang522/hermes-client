@@ -13,12 +13,6 @@ export default class ChatContainer  extends React.Component{
         <ChatMessage/>
         <ChatMessage/>
         <ChatMessage/>
-        <ChatMessage/>
-        <ChatMessage/>
-        <ChatMessage/>
-        <ChatMessage/>
-        <ChatMessage/>
-        <ChatMessage/>
       </section>
 
     )

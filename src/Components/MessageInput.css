@@ -1,6 +1,8 @@
 .message-input-container {
   background-color:white;
   width:100%;
+  position:absolute;
+  bottom:0;
 }
 
 .message-input {
@@ -12,5 +14,6 @@
   font-size:1.1em;
   resize: none;
   border:1px solid black;
+  
 }
 

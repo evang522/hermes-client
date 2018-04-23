@@ -14,10 +14,10 @@ export default class ChatMessage extends React.Component {
             </div>
             <div className='chat-message-body-container'>
               <div className='chat-message-username'>
-                <b>evang522</b>
+                <b>{this.props.author}</b>
               </div>
               <div className='chat-message-message'>
-                Has anyone discussed the upcoming meeting tomorrow? 
+                {this.props.body}
               </div>
             </div>
           </div>

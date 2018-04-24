@@ -1,4 +1,4 @@
-import {POPULATE_ROOM_DATA} from '../actions/room.actions';
+import {POPULATE_ROOM_DATA, MERGE_NEW_MESSAGES, SET_CURRENT_CHANNEL} from '../actions/room.actions';
 
 const initialState = {
   title: null,
@@ -7,13 +7,13 @@ const initialState = {
   created: null,
   members: null,
   id: null,
-  currentChannel:null
+  currentChannel:null,
+  messages:[]
 }
 
 const roomReducer = (state=initialState, action) => {
     switch(action.type){
       case POPULATE_ROOM_DATA:
-      console.log(action, 'ROOMDATA');
       return {
         ...state,
         title: action.roomData.title,
@@ -24,6 +24,17 @@ const roomReducer = (state=initialState, action) => {
         id: action.roomData._id,
       }
 
+      case SET_CURRENT_CHANNEL:
+      return {
+        ...state,
+          currentChannel: action.channelId
+      }
+      
+      case MERGE_NEW_MESSAGES:
+      return {
+        ...state, 
+        messages: [...state.messages.filter(message => message.channel !== state.currentChannel), ...action.messages]
+      }
       default:
       return state;
     }

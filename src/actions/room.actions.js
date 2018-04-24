@@ -14,6 +14,18 @@ export const populateRoomData = roomData => ({
   roomData
 });
 
+export const SET_CURRENT_CHANNEL = 'SET_CURRENT_CHANNEL';
+export const setCurrentChannel = channelId => ({
+  type:SET_CURRENT_CHANNEL,
+  channelId
+})
+
+export const MERGE_NEW_MESSAGES = 'MERGE NEW MESSAGES';
+export const mergeNewMessages = messages => ({
+  type:MERGE_NEW_MESSAGES,
+  messages
+})
+
 
 
 //================================== ASYNC Actions ====================>
@@ -37,4 +49,50 @@ export const retrieveRoomInfo = (urlname) => dispatch => {
     dispatch(setError(err));
   })
 
+}
+
+export const setChannelAndUpdateMessages = channelId => dispatch => {
+  dispatch(setCurrentChannel(channelId));
+  axios({
+    method:'GET',
+    'url': `${API_URL}/messages?channelId=${channelId}`,
+    headers: {
+      'content-type':'application/json'
+    }
+  })
+  .then(response => {
+    dispatch(mergeNewMessages(response.data));
+  })
+  .catch(err => {
+    setError(err);
+  })
+}
+
+
+export const addNewMessage = messageBody => (dispatch,getState) =>{
+
+  if (!getState().room.currentChannel) {
+    return;
+  }
+  const message = {
+    body: messageBody,
+    // TODO For now we have assigned the author to EVAN's id, but eventually we want to set it to get current User
+    author: '5adac6d819ff5e023ba68c1a',
+  }
+
+  console.log(message);
+  axios({
+    url:`${API_URL}/messages?channelId=${getState().room.currentChannel}`,
+    headers: {
+      'content-type':'application/json'
+    },
+    data: JSON.stringify(message),
+    method:'POST'
+  })
+  .then(response => {
+    
+  })
+  .catch(err => {
+    dispatch(setError(err));
+  })
 }

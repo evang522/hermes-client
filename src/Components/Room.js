@@ -5,16 +5,19 @@ import {retrieveRoomInfo} from '../actions/room.actions';
 import ChatContainer from './ChatContainer';
 import MessageInput from './MessageInput';
 import ChannelName from './ChannelName';
+import {withRouter} from 'react-router-dom';
 
 export class Room extends React.Component {
   componentDidMount() {
-    console.log('mounted');
-    this.props.dispatch(retrieveRoomInfo('hellotest'));
+    if (this.props.match) {
+      this.props.dispatch(retrieveRoomInfo(this.props.match.params.roomName));
+    }
   }
   render() {
-
-    const channels = this.props.channels.map(channel => <ChannelName name={channel.title} />);
-
+    let channels;
+    if (this.props.channels) {
+    channels = this.props.channels.map(channel => <ChannelName id={channel._id} name={channel.title} />);
+    }
     return (
 
         <main>
@@ -28,10 +31,7 @@ export class Room extends React.Component {
             <div className='channel-list-container'>
               <h3> Channels:</h3>
               <ul className='channel-list-ul'>
-                {/* <li>Funzos</li>
-                <li>Meetups</li>
-                <li>Sales</li> */}
-                {channels}
+                {channels ? channels : ''}
               </ul>
             </div>
           </div>
@@ -77,4 +77,4 @@ const mapStateToProps = state => ({
   members: state.room.members
 });
 
-export default connect(mapStateToProps)(Room);
+export default withRouter(connect(mapStateToProps)(Room));

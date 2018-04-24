@@ -14,6 +14,7 @@ export class MessageInput extends React.Component {
 
   handleSubmit() {
     this.props.dispatch(addNewMessage(this.input.value))
+    this.input.value = '';
   }
 
   render() {

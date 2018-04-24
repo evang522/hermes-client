@@ -52,7 +52,9 @@ export const retrieveRoomInfo = (urlname) => dispatch => {
 }
 
 export const setChannelAndUpdateMessages = channelId => dispatch => {
-  dispatch(setCurrentChannel(channelId));
+  if (channelId) {
+    dispatch(setCurrentChannel(channelId));
+  }
   axios({
     method:'GET',
     'url': `${API_URL}/messages?channelId=${channelId}`,
@@ -80,7 +82,6 @@ export const addNewMessage = messageBody => (dispatch,getState) =>{
     author: '5adac6d819ff5e023ba68c1a',
   }
 
-  console.log(message);
   axios({
     url:`${API_URL}/messages?channelId=${getState().room.currentChannel}`,
     headers: {
@@ -90,9 +91,58 @@ export const addNewMessage = messageBody => (dispatch,getState) =>{
     method:'POST'
   })
   .then(response => {
-    
+    dispatch(setChannelAndUpdateMessages(getState().room.currentChannel));
   })
   .catch(err => {
     dispatch(setError(err));
+  })
+}
+
+//================================== New Channel  ====================>
+
+export const createChannel = channelToAdd => (dispatch,getState) => {
+  const channelRequest = {
+    type:'addChannel',
+    channelToAdd
+  }
+
+  axios({
+    url: `${API_URL}/rooms/${getState().room.id}`,
+    method:'PUT',
+    headers: {
+      'content-type':'application/json',
+    },
+    data:JSON.stringify(channelRequest)
+  })
+  .then(response => {
+    dispatch(retrieveRoomInfo(getState().room.urlname));
+  })
+  .catch(err => {
+    dispatch(setError(err))
+  });
+}
+
+
+//================================== New Room ====================>
+export const createNewRoom = (urlname,title) => dispatch => {
+
+  const requestBody = {
+    urlname,
+    title
+  }
+
+  axios({
+    url:`${API_URL}/rooms`,
+    method:'POST',
+    data: JSON.stringify(requestBody),
+    headers: {
+      'content-type':'application/json'
+    }
+  })
+  .then(response => {
+    console.log('successful');
+  })
+  .catch(err => {
+    console.log(err);
   })
 }

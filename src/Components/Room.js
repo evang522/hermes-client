@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
-import {retrieveRoomInfo} from '../actions/room.actions';
+import {retrieveRoomInfo, createChannel} from '../actions/room.actions';
 import ChatContainer from './ChatContainer';
 import MessageInput from './MessageInput';
 import ChannelName from './ChannelName';
@@ -13,11 +13,25 @@ export class Room extends React.Component {
       this.props.dispatch(retrieveRoomInfo(this.props.match.params.roomName));
     }
   }
+
+
+  onAddChannel() {
+    this.props.dispatch(createChannel(this.newChannel.value));
+    this.newChannel.value='';
+  }
+
   render() {
     let channels;
     if (this.props.channels) {
     channels = this.props.channels.map(channel => <ChannelName id={channel._id} name={channel.title} />);
     }
+
+    let currentChannel = this.props.channels ? this.props.channels.find(channel => {
+      return channel._id === this.props.currentChannel
+    }) : '';
+    
+    
+
     return (
 
         <main>
@@ -26,13 +40,18 @@ export class Room extends React.Component {
               {this.props.roomTitle ? this.props.roomTitle : ''}
             </div>
             <div className='channel-title'>
-              #Sales
+              {currentChannel ? currentChannel.title : ''}
             </div>
             <div className='channel-list-container'>
               <h3> Channels:</h3>
               <ul className='channel-list-ul'>
                 {channels ? channels : ''}
               </ul>
+            </div>
+            <div className='new-channel'>
+              Create new Channel:
+              <input className='new-channel-input' ref={me => this.newChannel = me}/>
+              <button onClick={() => this.onAddChannel()}className='add-new-channel-button'>Add</button>
             </div>
           </div>
           <div className='header-chat-container'>
@@ -74,7 +93,8 @@ const mapStateToProps = state => ({
   roomTitle: state.room.title,
   channels: state.room.channels,
   urlname: state.room.urlname,
-  members: state.room.members
+  members: state.room.members,
+  currentChannel: state.room.currentChannel
 });
 
 export default withRouter(connect(mapStateToProps)(Room));

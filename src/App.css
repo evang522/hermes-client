@@ -15,7 +15,7 @@ main {
 }
 
 .header-chat-container {
-  width:100%;
+  width:90%;
 }
 
 
@@ -29,6 +29,12 @@ main {
   color:white;
   font-size:1.5em;
   text-align:center;
+  background-color:#EEEEEE;
+  color:black;
+  border-radius:6px;
+  border-right:1px solid black;
+  margin:.5em;
+  padding:1em;
 }
 
 
@@ -53,4 +59,17 @@ main {
 
 .channel-list-ul li::before {
   content:'#';
+}
+
+.new-channel {
+  color:white;
+}
+
+.new-channel input {
+  color:black;
+}
+
+
+.add-new-channel-button {
+  color:black;
 }

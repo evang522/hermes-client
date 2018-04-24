@@ -1,10 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import moment from 'moment';
 
-export default class ChatMessage extends React.Component {
+export class ChatMessage extends React.Component {
 
   render() {
-
-
     return (
         <div className='chat-message-container'>
           <div className='message-container'>
@@ -13,8 +13,11 @@ export default class ChatMessage extends React.Component {
               </div>
             </div>
             <div className='chat-message-body-container'>
-              <div className='chat-message-username'>
+              <div className='chat-message-username-timestamp'>
                 <b>{this.props.author}</b>
+              <div className='chat-message-timestamp'>
+              {moment(this.props.timestamp).fromNow()}
+              </div>
               </div>
               <div className='chat-message-message'>
                 {this.props.body}
@@ -24,5 +27,7 @@ export default class ChatMessage extends React.Component {
         </div>
     )
   }
-
 }
+
+
+export default connect()(ChatMessage);

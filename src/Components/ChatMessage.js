@@ -5,6 +5,7 @@ import moment from 'moment';
 export class ChatMessage extends React.Component {
 
   render() {
+    console.log(this.props.timestamp);
     return (
         <div className='chat-message-container'>
           <div className='message-container'>
@@ -14,7 +15,7 @@ export class ChatMessage extends React.Component {
             </div>
             <div className='chat-message-body-container'>
               <div className='chat-message-username-timestamp'>
-                <b>{this.props.author}</b>
+                <b>{this.props.author.handle}</b>
               <div className='chat-message-timestamp'>
               {moment(this.props.timestamp).fromNow()}
               </div>

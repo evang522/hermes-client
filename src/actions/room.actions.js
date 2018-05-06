@@ -26,18 +26,26 @@ export const mergeNewMessages = messages => ({
   messages
 })
 
+export const POPULATE_ROOM_LIST = 'POPULATE_ROOM_LIST';
+export const populateRoomList = roomList => ({
+  type:POPULATE_ROOM_LIST,
+  roomList
+})
+
+
 
 
 //================================== ASYNC Actions ====================>
 
 // Retrieve current RoomInformation
-export const retrieveRoomInfo = (urlname) => dispatch => {
+export const retrieveRoomInfo = (urlname) => (dispatch,getState) => {
   dispatch(setLoading());
   axios({
     method:'GET',
     'url': `${API_URL}/rooms/${urlname}`,
     headers: {
-      'content-type': 'application/json'
+      'content-type': 'application/json',
+      'Authorization':`Bearer ${getState().auth.authToken}`
     }
   })
   .then(res => {
@@ -51,7 +59,7 @@ export const retrieveRoomInfo = (urlname) => dispatch => {
 
 }
 
-export const setChannelAndUpdateMessages = channelId => dispatch => {
+export const setChannelAndUpdateMessages = channelId => (dispatch,getState) => {
   if (channelId) {
     dispatch(setCurrentChannel(channelId));
   }
@@ -59,7 +67,8 @@ export const setChannelAndUpdateMessages = channelId => dispatch => {
     method:'GET',
     'url': `${API_URL}/messages?channelId=${channelId}`,
     headers: {
-      'content-type':'application/json'
+      'content-type':'application/json',
+      'Authorization':`Bearer ${getState().auth.authToken}`
     }
   })
   .then(response => {
@@ -78,14 +87,14 @@ export const addNewMessage = messageBody => (dispatch,getState) =>{
   }
   const message = {
     body: messageBody,
-    // TODO For now we have assigned the author to EVAN's id, but eventually we want to set it to get current User
-    author: '5adac6d819ff5e023ba68c1a',
   }
+  
 
   axios({
     url:`${API_URL}/messages?channelId=${getState().room.currentChannel}`,
     headers: {
-      'content-type':'application/json'
+      'content-type':'application/json',
+      'Authorization':`Bearer ${getState().auth.authToken}`
     },
     data: JSON.stringify(message),
     method:'POST'
@@ -110,7 +119,8 @@ export const createChannel = channelToAdd => (dispatch,getState) => {
     url: `${API_URL}/rooms/${getState().room.id}`,
     method:'PUT',
     headers: {
-      'content-type':'application/json',
+      'Authorization':`Bearer ${getState().auth.authToken}`,
+      'content-type':'application/json'
     },
     data:JSON.stringify(channelRequest)
   })
@@ -124,7 +134,7 @@ export const createChannel = channelToAdd => (dispatch,getState) => {
 
 
 //================================== New Room ====================>
-export const createNewRoom = (urlname,title) => dispatch => {
+export const createNewRoom = (urlname,title) => (dispatch,getState) => {
 
   const requestBody = {
     urlname,
@@ -136,6 +146,7 @@ export const createNewRoom = (urlname,title) => dispatch => {
     method:'POST',
     data: JSON.stringify(requestBody),
     headers: {
+      'Authorization':`Bearer ${getState().auth.authToken}`,
       'content-type':'application/json'
     }
   })
@@ -145,4 +156,26 @@ export const createNewRoom = (urlname,title) => dispatch => {
   .catch(err => {
     console.log(err);
   })
+}
+
+
+export const populateRooms = () => (dispatch,getState) =>{
+  console.log('populateRooms was run');
+  dispatch(setLoading());
+
+  axios({
+    'url':`${API_URL}/rooms`,
+    headers: {
+      'Authorization':`Bearer ${getState().auth.authToken}`,
+      'content-type':'application/json'
+    },
+    'method':'GET'
+  })
+  .then(response => {
+    dispatch(populateRoomList(response.data))
+  })
+  .catch(err => {
+    dispatch(setError(err));
+  })
+  
 }

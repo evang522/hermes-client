@@ -1,45 +1,36 @@
+//================================== Import dependencies ====================>
 import React from 'react';
-import {createNewRoom} from '../actions/room.actions';
+import Login from './Login';
 import {connect} from 'react-redux';
-export class LandingPage extends React.Component {
+import {Link} from 'react-router-dom';
+import Signup from './Signup';
+import ListofYourRooms from './ListofYourRooms';
 
-  onCreateNewRoom() {
-    this.props.dispatch(createNewRoom(this.urlinput.value, this.titleinput.value));
-    this.urlinput.value = '';
-    this.titleinput.value='';
-  }
+export class LandingPage extends React.Component {
 
   render() {
 
     return (
-      <div className='landing-page-container'>
-        <div className='create-new-room-container'>
-          <h2>Create new Room</h2>
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="input-group">
-                <input type="text" placeholder='Url name...' className="form-control" ref={input => this.urlinput = input}/>
-              </div>
-            </div>
-            <div className="col-lg-6">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="input-group">
-                <input type="text" placeholder='Room Title...' className="form-control" ref={input => this.titleinput = input}/>
-              </div>
-            </div>
-          </div>
-
-          <button className='btn btn-primary btn-wide' onClick={() => this.onCreateNewRoom()}> Create Room! </button>
+      <section className='landing-page-container'>
+        <header className='landing-page-header'>
+          <h1>Hermes: A Messenger Built from Javascript</h1>
+        </header>
+        {this.props.authToken ? <ListofYourRooms /> : <Login/>}
+        <br/>
+        <br/>
+        <div className='landing-page-about-section'>
+          <h1>About hermes</h1>
+          <Link to='/create'>Create a new Room </Link>
+          <br/>
+          <Link to='/signup'>Create an Account</Link>
         </div>
-      </div>
-    
-
+      </section>
     )
   }
+
 }
 
-
-export default connect()(LandingPage);
+const mapStateToProps = state => ({
+  authToken: state.auth.authToken
+})
+export default connect(mapStateToProps)(LandingPage)

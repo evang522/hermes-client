@@ -73,3 +73,13 @@ main {
 .add-new-channel-button {
   color:black;
 }
+
+.roomcard {
+  background-color:#EEEEEE;
+  padding:1em;
+  border-radius:7px;
+  width:10em;
+  font-weight:bold;
+  margin:1em;
+  display:inline-block;
+}

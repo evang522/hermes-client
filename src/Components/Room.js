@@ -16,6 +16,7 @@ export class Room extends React.Component {
 
 
   onAddChannel() {
+    if (this.newChannel.value)
     this.props.dispatch(createChannel(this.newChannel.value));
     this.newChannel.value='';
   }

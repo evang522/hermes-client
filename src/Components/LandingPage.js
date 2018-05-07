@@ -3,7 +3,6 @@ import React from 'react';
 import Login from './Login';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import Signup from './Signup';
 import ListofYourRooms from './ListofYourRooms';
 
 export class LandingPage extends React.Component {

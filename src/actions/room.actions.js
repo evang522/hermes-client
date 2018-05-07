@@ -50,6 +50,8 @@ export const retrieveRoomInfo = (urlname) => (dispatch,getState) => {
   })
   .then(res => {
     dispatch(populateRoomData(res.data));
+    const mainId =  res.data.channels.filter(channel => channel.title === 'Main')[0]._id;
+    dispatch(setChannelAndUpdateMessages(mainId));
     dispatch(clearLoading());
   })
   .catch(err => {
@@ -100,7 +102,7 @@ export const addNewMessage = messageBody => (dispatch,getState) =>{
     method:'POST'
   })
   .then(response => {
-    dispatch(setChannelAndUpdateMessages(getState().room.currentChannel));
+    // dispatch(setChannelAndUpdateMessages(getState().room.currentChannel));
   })
   .catch(err => {
     dispatch(setError(err));
@@ -151,7 +153,6 @@ export const createNewRoom = (urlname,title) => (dispatch,getState) => {
     }
   })
   .then(response => {
-    console.log('successful');
   })
   .catch(err => {
     console.log(err);
@@ -160,7 +161,6 @@ export const createNewRoom = (urlname,title) => (dispatch,getState) => {
 
 
 export const populateRooms = () => (dispatch,getState) =>{
-  console.log('populateRooms was run');
   dispatch(setLoading());
 
   axios({

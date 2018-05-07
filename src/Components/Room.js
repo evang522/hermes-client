@@ -7,11 +7,13 @@ import MessageInput from './MessageInput';
 import ChannelName from './ChannelName';
 import {withRouter} from 'react-router-dom';
 
+
 export class Room extends React.Component {
   componentDidMount() {
     if (this.props.match) {
       this.props.dispatch(retrieveRoomInfo(this.props.match.params.roomName));
     }
+   
   }
 
 
@@ -24,7 +26,7 @@ export class Room extends React.Component {
   render() {
     let channels;
     if (this.props.channels) {
-    channels = this.props.channels.map(channel => <ChannelName id={channel._id} name={channel.title} />);
+    channels = this.props.channels.map((channel,index) => <ChannelName key={index} id={channel._id} name={channel.title} />);
     }
 
     let currentChannel = this.props.channels ? this.props.channels.find(channel => {
@@ -41,7 +43,7 @@ export class Room extends React.Component {
               {this.props.roomTitle ? this.props.roomTitle : ''}
             </div>
             <div className='channel-title'>
-              {currentChannel ? currentChannel.title : ''}
+              {currentChannel ? currentChannel.title : 'Loading...'}
             </div>
             <div className='channel-list-container'>
               <h3> Channels:</h3>
@@ -81,7 +83,7 @@ export class Room extends React.Component {
         </Navbar>
             </div>
             <ChatContainer/>
-          <MessageInput/>
+          <MessageInput room={this.props.match.params.roomName}/>
           </div>
         </main>
 

@@ -38,7 +38,6 @@ const roomReducer = (state=initialState, action) => {
       }
 
       case POPULATE_ROOM_LIST:
-      console.log(action);
       return {
         ...state,
         userrooms:action.roomList

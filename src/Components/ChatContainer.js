@@ -13,8 +13,8 @@ export class ChatContainer  extends React.Component{
     }
 
     let chats;
-    chats = channelMessages.map(message => {
-      return <ChatMessage body={message.body} timestamp={message.created} author={message.author}/>
+    chats = channelMessages.map((message,index) => {
+      return <ChatMessage body={message.body} key={index} timestamp={message.created} author={message.author}/>
     });
 
 

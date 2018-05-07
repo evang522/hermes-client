@@ -5,7 +5,6 @@ import moment from 'moment';
 export class ChatMessage extends React.Component {
 
   render() {
-    console.log(this.props.timestamp);
     return (
         <div className='chat-message-container'>
           <div className='message-container'>

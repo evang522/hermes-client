@@ -25,11 +25,10 @@ export class ListOfYourRooms extends React.Component {
       )
     }
 
-    const roomList = this.props.roomlist ? this.props.roomlist.map(room => {
-      return <RoomUnit room={room} />
+    const roomList = this.props.roomlist ? this.props.roomlist.map((room,index) => {
+      return <RoomUnit key={index} room={room} />
     }) : '';
 
-    console.log('roomslist',this.props);
 
     return(
       <div className='list-of-rooms-container'>

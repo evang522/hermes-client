@@ -1,5 +1,5 @@
 
-main {
+.room-app-main {
   display:flex;
   flex-direction:row;
   height:99vh;

@@ -1,0 +1,79 @@
+.landing-page-header {
+  height:4em;
+  box-shadow: .5px .5px 2px rgba(0, 0, 0, 0.466);
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  flex-direction:row;
+}
+
+.landing-page-header-title {
+  font-size:2em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-left:1em;
+  margin-top:.3em;
+  font-weight:bold;
+  flex-basis:80%;
+}
+
+.landing-page-main {
+  margin-top:4em;
+}
+
+.lp-header-ops-ul {
+  display:flex;
+  list-style:none;
+
+}
+
+.lp-header-ops-ul {
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight:bold;
+}
+
+.lp-header-ops-ul li {
+  margin-left:1em;
+  border:1px solid rgba(0, 0, 0, 0.377);
+  padding:6px;
+  border-radius:4px;
+  background-color:rgb(250, 250, 250);
+  cursor:pointer;
+}
+
+.list-of-rooms-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin:0 auto;
+  margin-top:9em;
+  text-align:center;
+}
+
+.list-of-rooms-list-container {
+  display:flex;
+  justify-content:center;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+}
+
+.roomcard {
+  width:15em; 
+  display:flex;
+  height:5em;
+  border:1px solid rgba(0, 0, 0, 0.432);
+  border-radius:4px;
+  padding:10px;
+  background-color:rgb(250, 250, 250);
+}
+
+.roomcard a {
+  margin-top:1.2em;
+  text-decoration:none;
+  border:1px solid rgba(0, 0, 0, 0.418);
+  padding:5px;
+  border-radius:4px;
+  height:1.5em;
+  margin-left:1em;
+  background-color:#1F4258;
+  color:white;
+  font-weight:bold;
+}

@@ -1,3 +1,14 @@
 .channel-name {
   cursor:pointer;
+  width:88%;
+  margin:0 auto;
+  margin-left:.5em;
+  text-align:left;
+
+}
+
+.selected-channel {
+  background-color:white !important;
+  color:black;
+  margin-right:1em;
 }

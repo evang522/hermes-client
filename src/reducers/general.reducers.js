@@ -6,7 +6,7 @@ const initialState = {
   error:null
 }
 
-const roomReducer = (state=initialState, action) => {
+const generalReducer = (state=initialState, action) => {
     switch(action.type){
       case SET_LOADING:
       return {

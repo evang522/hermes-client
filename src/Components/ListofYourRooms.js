@@ -16,11 +16,8 @@ export class ListOfYourRooms extends React.Component {
 
       return (
           <div className="card roomcard" >
-            <div className="card-body">
               <h2 className="card-title">{props.room.title}</h2>
-              <p className="card-text">{props.room.urlname}</p>
               <Link to={props.room.urlname}>Open</Link>
-            </div>
           </div>
       )
     }
@@ -32,7 +29,7 @@ export class ListOfYourRooms extends React.Component {
 
     return(
       <div className='list-of-rooms-container'>
-        <h1> Rooms you're a Member of</h1>
+        <h1> Your Rooms</h1>
         <div className='list-of-rooms-list-container'>
           {roomList ? roomList : ''}
         </div>

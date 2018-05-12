@@ -32,6 +32,17 @@ export const populateRoomList = roomList => ({
   roomList
 })
 
+export const REMOVE_ADDING_CHANNEL = 'REMOVE_ADDING_CHANNEL';
+export const removeAddingChannel = () => ({
+  type:REMOVE_ADDING_CHANNEL
+})
+
+export const SET_ADDING_CHANNEL = 'SET_ADDING_CHANNEL';
+export const setAddingChannel = () => ({
+  type:SET_ADDING_CHANNEL
+})
+
+
 
 
 
@@ -111,10 +122,11 @@ export const addNewMessage = messageBody => (dispatch,getState) =>{
 
 //================================== New Channel  ====================>
 
-export const createChannel = channelToAdd => (dispatch,getState) => {
+export const createChannel = (channelToAdd,purpose) => (dispatch,getState) => {
   const channelRequest = {
     type:'addChannel',
-    channelToAdd
+    channelToAdd,
+    purpose
   }
 
   axios({

@@ -1,0 +1,22 @@
+.mini-add-channel-button {
+  background-color:white;
+  color:rgba(0, 0, 0, 0.521);
+  height:1.5em;
+  border-radius:3px;
+  padding:2px;
+  font-size:.8em;
+  border:1px solid rgba(0, 0, 0, 0.425);
+  margin-top:1.6em;
+  font-weight:700;
+  margin-left:-1em;
+  cursor:pointer;
+}
+
+.channels-channeladd {
+  display:flex;
+  flex-direction:row;
+}
+
+.channels-channeladd h3 {
+  flex-basis:60%;
+}

@@ -20,7 +20,17 @@ export class ChatContainer  extends React.Component{
 
     return (
       <section className='chat-jumbo-container'>
+        <header className='chat-container-header'>
+          <div className='chat-container-header-channelname'>
+            #{this.props.channels.length && this.props.currentChannel ? this.props.channels.filter(chan => chan._id === this.props.currentChannel)[0].title : ''}
+          </div>
+          <div className='chat-container-header-purpose'>
+          {this.props.channels.length && this.props.currentChannel ? this.props.channels.filter(chan => chan._id === this.props.currentChannel)[0].purpose : ''}
+          </div>
+        </header>
+        <section className='chat-container-body'>
         {chats ? chats: ''}
+        </section>
       </section>
 
     )

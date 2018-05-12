@@ -1,0 +1,14 @@
+.add-channel-button {
+  width:1em;
+  height:1em;
+  margin-top:1.6em;
+  margin-left:1em;
+  background-color:white;
+  border-radius:3em;
+}
+
+.channels-channeladd {
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+}

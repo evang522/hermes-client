@@ -4,6 +4,7 @@ import Login from './Login';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import ListofYourRooms from './ListofYourRooms';
+import LandingHeader from '../Components/LandingHeader';
 
 export class LandingPage extends React.Component {
 
@@ -12,7 +13,7 @@ export class LandingPage extends React.Component {
     return (
       <section className='landing-page-container'>
         <header className='landing-page-header'>
-          <h1>Hermes: A Messenger Built from Javascript</h1>
+          <LandingHeader/>
         </header>
         {this.props.authToken ? <ListofYourRooms /> : <Login/>}
         <br/>

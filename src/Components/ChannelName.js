@@ -9,10 +9,16 @@ export class ChannelName extends React.Component{
   }
   
   render() {
+
+    console.log(this.props.channelId, this.props.id);
   return (
-    <li className='channel-name' onClick={e => this.onClick(e)} data-id={this.props.id}>{this.props.name ? this.props.name : ''}</li>
+    <li className={`channel-name ${this.props.channelId === this.props.id ? 'selected-channel' : ''}`} onClick={e => this.onClick(e)} data-id={this.props.id}>{this.props.name ? this.props.name : ''}</li>
   )
 }
 }
 
-export default connect()(ChannelName);
+const mapStateToProps = state => ({
+  channelId: state.room.currentChannel
+});
+
+export default connect(mapStateToProps)(ChannelName);

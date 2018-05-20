@@ -1,6 +1,7 @@
 //================================== Import Dependencies ====================>
 import React from 'react';
 import {populateRooms} from '../actions/room.actions';
+import {setAddingRoom} from '../actions/general.actions';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
@@ -22,9 +23,14 @@ export class ListOfYourRooms extends React.Component {
       )
     }
 
-    const roomList = this.props.roomlist ? this.props.roomlist.map((room,index) => {
+    const roomList = this.props.roomlist.length ? this.props.roomlist.map((room,index) => {
       return <RoomUnit key={index} room={room} />
-    }) : '';
+    }) : (
+          <div className="card roomcard" >
+              <h2 className="card-title">You aren't in any Rooms</h2>
+              <Link onClick={() => this.props.dispatch(setAddingRoom())}to='#'>Create One!</Link>
+          </div>
+    );
 
 
     return(

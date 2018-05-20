@@ -46,7 +46,7 @@ export class LandingPage extends React.Component {
           </div>
           <div className='landing-page-options'>
           {this.props.authToken ? <button className='green' onClick={() => this.props.dispatch(setAddingRoom())}>Create a Room </button> : '' }
-           {this.props.authToken ? '' : <button onClick={() => this.props.dispatch(setCreateAccountModal())} className='gray-button'>Create an Account</button> }
+           {this.props.authToken ? '' : <button onClick={() => this.props.dispatch(setCreateAccountModal())} className='green'>Create an Account</button> }
           </div>
         {this.props.authToken ? <ListofYourRooms /> : ''}
         </main>

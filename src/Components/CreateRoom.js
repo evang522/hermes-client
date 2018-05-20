@@ -1,39 +1,40 @@
 import React from 'react';
 import {createNewRoom} from '../actions/room.actions';
 import {connect} from 'react-redux';
+import {setAddingRoom, unsetAddingRoom} from '../actions/general.actions';
 export class CreateRoom extends React.Component {
 
   onCreateNewRoom() {
-    this.props.dispatch(createNewRoom(this.urlinput.value, this.titleinput.value));
-    this.urlinput.value = '';
-    this.titleinput.value='';
+    this.props.dispatch(createNewRoom(this.urlNameInput.value, this.roomNameInput.value));
+    this.urlNameInput.value = '';
+    this.roomNameInput.value='';
+    this.props.dispatch(unsetAddingRoom());
   }
 
   render() {
 
     return (
-      <div className='landing-page-container'>
-        <div className='create-new-room-container'>
-          <h2>Create new Room</h2>
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="input-group">
-                <input type="text" placeholder='Url name...' className="form-control" ref={input => this.urlinput = input}/>
-              </div>
-            </div>
-            <div className="col-lg-6">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="input-group">
-                <input type="text" placeholder='Room Title...' className="form-control" ref={input => this.titleinput = input}/>
-              </div>
-            </div>
+           <div className='add-channel-container'>
+        <div className='add-channel-dialogue-container'>
+          <div className='add-channel-dialogue-title'>
+            Create a Room:
           </div>
 
-          <button className='btn btn-primary btn-wide' onClick={() => this.onCreateNewRoom()}> Create Room! </button>
-        </div>
+          <div className='add-channel-dialogue-name-section'>
+            <label htmlFor='urlname' className='add-channel-name'> Room URL
+            </label>
+            <input ref={me => this.urlNameInput=me}  id='urlname' placeholder='# e.g. philosophytalk'/>
+          </div>
+            <div className='add-channel-dialogue-purpose-section'>
+              <label htmlFor='channelPurpose' className='add-channel-purpose'> Room Title
+              </label>
+              <input ref={me => this.roomNameInput = me} id='roomName' placeholder='What do you want to Call this Room?' />
+            </div>
+            <div className='add-channel-button-group'>
+              <button className='add-channel-cancel-button add-channel-button' onClick={() => this.props.dispatch(unsetAddingRoom())}>Cancel</button>
+              <button onClick={() => this.onCreateNewRoom()} className='add-channel-submit-button add-channel-button'>Create Room</button>
+            </div>
+          </div>
       </div>
     
 

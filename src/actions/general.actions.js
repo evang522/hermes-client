@@ -14,3 +14,13 @@ export const setError = err => ({
   type:SET_ERROR,
   err
 })
+
+export const SET_ADDING_ROOM = 'SET_ADDING_ROOM';
+export const setAddingRoom = () => ({
+  type:SET_ADDING_ROOM
+})
+
+export const UNSET_ADDING_ROOM = 'UNSET_ADDING_ROOM';
+export const unsetAddingRoom = () => ({
+  type: UNSET_ADDING_ROOM
+})

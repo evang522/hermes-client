@@ -5,32 +5,48 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import ListofYourRooms from './ListofYourRooms';
 import './styles/LandingPage.css';
+import {logout, setLoggingIn, unsetLoggingIn} from '../actions/auth.actions';
+import CreateRoom from './CreateRoom';
+import { setAddingRoom } from '../actions/general.actions';
 
 export class LandingPage extends React.Component {
 
-  render() {
+  handleLoginClick = () => {
+    this.props.dispatch(setLoggingIn());
+  }
 
+  removeLoginModal = () => {
+    this.props.dispatch(unsetLoggingIn());
+  }
+
+  render() {
     return (
       <section className='landing-page-container'>
+        {this.props.loggingIn ? <Login removeLoginModal={this.removeLoginModal} /> : ''}
+        {this.props.addingRoom ? <CreateRoom /> : ''}
         <div className='landing-page-header'>
           <div className='landing-page-header-title'>
-            #Hermes
+            Hermes
           </div>
           <div className='landing-page-header-options'>
             <ul className='lp-header-ops-ul'>
               <li>Preferences</li>
-              {!this.props.authToken ?  <li>Login</li> : <li>Logout</li>}
+              {!this.props.authToken ? <li onClick={() => this.handleLoginClick()}>Login</li> : <li onClick={() => this.props.dispatch(logout())}>Logout</li>}
             </ul>
           </div>
         </div>
         <main className='landing-page-main'>
-        {this.props.authToken ? <ListofYourRooms /> : <Login/>}
-        <div className='landing-page-about-section'>
-          <h1>About hermes</h1>
-          <Link to='/create'>Create a new Room </Link>
-          <br/>
-          <Link to='/signup'>Create an Account</Link>
-        </div>
+          <div className='landing-page-intro'>
+            A Full Stack Javascript Messenger Proof of Concept
+            <div className='landing-page-intro-sub'>
+              MongoDB, Node.js, Socket.io, React, Redux
+            </div>
+          </div>
+          <div className='landing-page-options'>
+          {this.props.authToken ? <button className='green' onClick={() => this.props.dispatch(setAddingRoom())}>Create a Room </button> : '' }
+           {this.props.authToken ? '' : <button className='gray-button'><Link to='/signup'>Create an Account</Link></button> }
+          </div>
+        {this.props.authToken ? <ListofYourRooms /> : ''}
         </main>
       </section>
     )
@@ -39,6 +55,8 @@ export class LandingPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  authToken: state.auth.authToken
+  authToken: state.auth.authToken,
+  loggingIn: state.auth.loggingIn,
+  addingRoom: state.general.addingRoom
 })
 export default connect(mapStateToProps)(LandingPage)

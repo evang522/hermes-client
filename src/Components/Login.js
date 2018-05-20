@@ -18,22 +18,30 @@ export class Login extends React.Component {
   
   render() {
     return(
-      <div className='login-container'>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <form onSubmit={(e) => this.handleLogin(e)} className='login-container'>
-          <label htmlFor='identifier'>Email or Handle</label>
-          <input className='form-control' id='identifier' ref={input => this.identifierInput = input}/>
-          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-          <br/>
-          <label htmlFor='password'>Password</label>
-          <input className='form-control' id='password' type='password' ref={input => this.passwordInput = input}/>
-          <br/>
-          <input type='submit' title='hello' className='btn btn-primary'/>
-        </form>
+
+      <div className='add-channel-container'>
+        <div className='add-channel-dialogue-container'>
+          <div className='add-channel-dialogue-title'>
+            Log in to Hermes
+          </div>
+
+          <div className='add-channel-dialogue-name-section'>
+            <label htmlFor='identifier' className='add-channel-name'> Username or Handle
+            </label>
+            <input ref={me => this.identifierInput=me}  id='identifier' />
+          </div>
+            <div className='add-channel-dialogue-purpose-section'>
+              <label htmlFor='password' className='add-channel-purpose'> Password
+              </label>
+              <input type='password' ref={me => this.passwordInput = me} id='password' />
+            </div>
+            <div className='add-channel-button-group'>
+              <button onClick={e => this.handleLogin(e)} className='add-channel-submit-button add-channel-button'>Login</button>
+              <button className='add-channel-cancel-button add-channel-button' onClick={() => this.props.removeLoginModal()}>Cancel</button>
+            </div>
+          </div>
       </div>
+
     )
   }
 }

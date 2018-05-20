@@ -18,18 +18,18 @@ export class AddChannel extends React.Component {
   render(){
     return(
 
-      <div className='add-channel-container'>
-        <div className='add-channel-dialogue-container'>
-          <div className='add-channel-dialogue-title'>
+      <div className='form-uber-container'>
+        <div className='form-container'>
+          <div className='form-title'>
             Create a Channel:
           </div>
 
-          <div className='add-channel-dialogue-name-section'>
+          <div className='form-name-section'>
             <label htmlFor='channelName' className='add-channel-name'> Name
             </label>
             <input ref={me => this.channelName=me}  id='channelName' placeholder='# e.g. Marketing'/>
           </div>
-            <div className='add-channel-dialogue-purpose-section'>
+            <div className='form-purpose-section'>
               <label htmlFor='channelPurpose' className='add-channel-purpose'> Purpose (optional)
               </label>
               <input ref={me => this.channelPurpose = me} id='channelPurpose' placeholder='What is this channel about?' />

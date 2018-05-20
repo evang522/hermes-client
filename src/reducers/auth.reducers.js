@@ -1,6 +1,6 @@
 //================================== Import Dependencies ====================>
 import jsonwebtoken from 'jsonwebtoken';
-import {APPLY_LOGIN, LOGOUT, SET_LOGGING_IN, UNSET_LOGGING_IN} from '../actions/auth.actions';
+import {APPLY_LOGIN, LOGOUT, SET_LOGGING_IN, UNSET_LOGGING_IN, SET_CREATE_ACCOUNT_MODAL, UNSET_CREATE_ACCOUNT_MODAL} from '../actions/auth.actions';
 import { setChannelAndUpdateMessages } from '../actions/room.actions';
 
 //================================== Set up Initial State ====================>
@@ -18,7 +18,8 @@ export const authReducer = (state=initialState,action) => {
       ...state,
       userInfo: jsonwebtoken.decode(action.authToken),
       authToken: action.authToken,
-      logginIn:false
+      logginIn:false,
+      createAccountModal:false
     }
 
 //------------------->
@@ -36,12 +37,28 @@ export const authReducer = (state=initialState,action) => {
         ...state,
         loggingIn:true
       }
+
 //------------------->
     case UNSET_LOGGING_IN:
       return {
         ...state,
         loggingIn:false
       }
+    
+//------------------>
+    case SET_CREATE_ACCOUNT_MODAL:
+      return {
+        ...state,
+        createAccountModal:true
+      }
+
+//------------------>
+case UNSET_CREATE_ACCOUNT_MODAL:
+return {
+  ...state,
+  createAccountModal:false
+}
+
 
 //------------------>
     default:

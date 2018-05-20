@@ -5,8 +5,9 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import ListofYourRooms from './ListofYourRooms';
 import './styles/LandingPage.css';
-import {logout, setLoggingIn, unsetLoggingIn} from '../actions/auth.actions';
+import {logout, setLoggingIn, unsetLoggingIn, setCreateAccountModal} from '../actions/auth.actions';
 import CreateRoom from './CreateRoom';
+import Signup from './Signup';
 import { setAddingRoom } from '../actions/general.actions';
 
 export class LandingPage extends React.Component {
@@ -24,6 +25,7 @@ export class LandingPage extends React.Component {
       <section className='landing-page-container'>
         {this.props.loggingIn ? <Login removeLoginModal={this.removeLoginModal} /> : ''}
         {this.props.addingRoom ? <CreateRoom /> : ''}
+        {this.props.createAccountModal ? <Signup /> : ''}
         <div className='landing-page-header'>
           <div className='landing-page-header-title'>
             Hermes
@@ -44,7 +46,7 @@ export class LandingPage extends React.Component {
           </div>
           <div className='landing-page-options'>
           {this.props.authToken ? <button className='green' onClick={() => this.props.dispatch(setAddingRoom())}>Create a Room </button> : '' }
-           {this.props.authToken ? '' : <button className='gray-button'><Link to='/signup'>Create an Account</Link></button> }
+           {this.props.authToken ? '' : <button onClick={() => this.props.dispatch(setCreateAccountModal())} className='gray-button'>Create an Account</button> }
           </div>
         {this.props.authToken ? <ListofYourRooms /> : ''}
         </main>
@@ -57,6 +59,7 @@ export class LandingPage extends React.Component {
 const mapStateToProps = state => ({
   authToken: state.auth.authToken,
   loggingIn: state.auth.loggingIn,
-  addingRoom: state.general.addingRoom
+  addingRoom: state.general.addingRoom,
+  createAccountModal: state.auth.createAccountModal
 })
 export default connect(mapStateToProps)(LandingPage)

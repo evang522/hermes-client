@@ -26,6 +26,16 @@ export const unsetLoggingIn = () => ({
   type:UNSET_LOGGING_IN
 });
 
+export const SET_CREATE_ACCOUNT_MODAL = 'SET_CREATE_ACCOUNT_MODAL';
+export const setCreateAccountModal = () => ({
+  type: SET_CREATE_ACCOUNT_MODAL
+})
+
+export const UNSET_CREATE_ACCOUNT_MODAL = 'UNSET_CREATE_ACCOUNT_MODAL';
+export const unsetCreateAccountModal = () => ({
+  type: UNSET_CREATE_ACCOUNT_MODAL
+})
+
 
 
 
@@ -52,7 +62,7 @@ export const login = (identifier,password) => (dispatch,getState) =>{
   .catch(err => {
     dispatch(clearLoading());
     dispatch(setError(err));
-    
+
   })
 }
 
@@ -68,6 +78,8 @@ export const signup = (userObj) => (dispatch,getState) => {
   })
   .then(response => {
     dispatch(clearLoading())
+    dispatch(unsetCreateAccountModal())
+    dispatch(setLoggingIn());
   })
   .catch(err =>{
     dispatch(clearLoading());

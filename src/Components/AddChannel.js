@@ -18,7 +18,7 @@ export class AddChannel extends React.Component {
   render(){
     return(
 
-      <div className='add-channel-container'>
+      <div className='form-uber-container'>
         <div className='form-container'>
           <div className='form-title'>
             Create a Channel:

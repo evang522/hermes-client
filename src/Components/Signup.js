@@ -1,6 +1,6 @@
 //================================== Import Dependencies ====================>
 import React from 'react';
-import {signup} from '../actions/auth.actions';
+import {signup, unsetCreateAccountModal} from '../actions/auth.actions';
 import {connect} from 'react-redux';
 
 
@@ -48,7 +48,7 @@ export class Signup extends React.Component {
   render() {
     return(
 
-       <div className='add-channel-container'>
+       <div className='form-uber-container'>
         <div className='form-container'>
             <div className='form-title'>
               Create an Account:
@@ -77,15 +77,15 @@ export class Signup extends React.Component {
               <input ref={me => this.passwordInput = me} type='password' id='password' />
             </div>
 
-            <div className='form-purpose-section'>
+            <div className='form-name-section'>
               <label htmlFor='password1' className='add-channel-purpose'> Verify Password
               </label>
               <input ref={me => this.password1Input = me}  type='password' id='password1' />
             </div>
 
             <div className='add-channel-button-group'>
-              <button onClick={() => this.handleSignup()} className='add-channel-submit-button add-channel-button'>Let's Go!</button>
-              <button className='add-channel-cancel-button add-channel-button'>Cancel</button>
+              <button onClick={e => this.handleSignup(e)} className='add-channel-submit-button add-channel-button'>Let's Go!</button>
+              <button onClick={() => this.props.dispatch(unsetCreateAccountModal())} className='add-channel-cancel-button add-channel-button'>Cancel</button>
             </div>
           </div>
       </div>

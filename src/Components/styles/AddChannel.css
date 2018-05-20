@@ -1,4 +1,4 @@
-.add-channel-container {
+.form-uber-container {
   background-color:white;
   position:fixed;
   left:0;
@@ -15,7 +15,6 @@
   height:40em;
   margin:0 auto;
   margin-top:5em;
-
 }
 
 .form-title {

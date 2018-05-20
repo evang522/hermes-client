@@ -165,6 +165,7 @@ export const createNewRoom = (urlname,title) => (dispatch,getState) => {
     }
   })
   .then(response => {
+    dispatch(populateRooms());
   })
   .catch(err => {
     console.log(err);

@@ -29,7 +29,7 @@ export class ListOfYourRooms extends React.Component {
 
     return(
       <div className='list-of-rooms-container'>
-        <h1> Your Rooms</h1>
+        <p className='your-rooms'> Your Rooms:</p>
         <div className='list-of-rooms-list-container'>
           {roomList ? roomList : ''}
         </div>

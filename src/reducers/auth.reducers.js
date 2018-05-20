@@ -1,6 +1,7 @@
 //================================== Import Dependencies ====================>
 import jsonwebtoken from 'jsonwebtoken';
-import {APPLY_LOGIN} from '../actions/auth.actions';
+import {APPLY_LOGIN, LOGOUT, SET_LOGGING_IN, UNSET_LOGGING_IN} from '../actions/auth.actions';
+import { setChannelAndUpdateMessages } from '../actions/room.actions';
 
 //================================== Set up Initial State ====================>
 const initialState = {
@@ -16,8 +17,31 @@ export const authReducer = (state=initialState,action) => {
     return {
       ...state,
       userInfo: jsonwebtoken.decode(action.authToken),
-      authToken: action.authToken
+      authToken: action.authToken,
+      logginIn:false
     }
+
+//------------------->
+
+    case LOGOUT:
+      return {
+        ...state,
+        userInfo: null,
+        authToken:null
+      }
+
+//------------------->
+    case SET_LOGGING_IN: 
+      return {
+        ...state,
+        loggingIn:true
+      }
+//------------------->
+    case UNSET_LOGGING_IN:
+      return {
+        ...state,
+        loggingIn:false
+      }
 
 //------------------>
     default:

@@ -9,7 +9,22 @@ export const APPLY_LOGIN = 'APPLY_LOGIN';
 export const applyLogin = authToken => ({
   type: APPLY_LOGIN,
   authToken
-})
+});
+
+export const LOGOUT = 'LOGOUT';
+export const storeLogout = () => ({
+  type:LOGOUT
+});
+
+export const SET_LOGGING_IN = 'SET_LOGGING_IN';
+export const setLoggingIn = () => ({
+  type:SET_LOGGING_IN
+});
+
+export const UNSET_LOGGING_IN = 'UNSET_LOGGING_IN';
+export const unsetLoggingIn = () => ({
+  type:UNSET_LOGGING_IN
+});
 
 
 
@@ -32,10 +47,12 @@ export const login = (identifier,password) => (dispatch,getState) =>{
     dispatch(clearLoading())
     dispatch(applyLogin(response.data.authToken));
     localStorage.setItem('authToken',response.data.authToken);
+    dispatch(unsetLoggingIn());
   })
   .catch(err => {
     dispatch(clearLoading());
     dispatch(setError(err));
+    
   })
 }
 
@@ -56,4 +73,9 @@ export const signup = (userObj) => (dispatch,getState) => {
     dispatch(clearLoading());
     dispatch(setError(err));
   })
+}
+
+export const logout = () => dispatch => {
+  dispatch(storeLogout());
+  localStorage.clear('authToken');
 }

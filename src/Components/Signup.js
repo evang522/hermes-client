@@ -47,31 +47,47 @@ export class Signup extends React.Component {
   
   render() {
     return(
-      <div className='signup-container'>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <form onSubmit={(e) => this.handleSignup(e)} className='signup-form'>
-          <label htmlFor='name'>Your Name</label>
-          <input className='form-control' id='name' ref={input => this.nameInput = input}/>
 
-          <label htmlFor='email'>Email Address</label>
-          <input className='form-control' id='email' ref={input => this.emailInput = input}/>
-          
-          <label htmlFor='handle'>Your Handle (username)</label>
-          <input className='form-control' id='handle' ref={input => this.handleInput = input}/>
+       <div className='add-channel-container'>
+        <div className='add-channel-dialogue-container'>
+            <div className='add-channel-dialogue-title'>
+              Create an Account:
+            </div>
 
-          <label htmlFor='pass'>Password</label>
-          <input className='form-control' id='pass' type='password' ref={input => this.passwordInput = input}/>
-          
-          <label htmlFor='pass1'>Verify Password</label>
-          <input className='form-control' id='pass1' type='password' ref={input => this.password1Input = input}/>
-          <small id="emailHelp" className="form-text text-muted">{this.state.warningmessage ? this.state.warningmessage : ''}</small>
-          <br/>
+            <div className='add-channel-dialogue-name-section'>
+              <label htmlFor='channelName' className='add-channel-name'> Your Name
+              </label>
+              <input ref={me => this.nameInput=me}  id='name'/>
+            </div>
 
-          <input type='submit' title='hello' className='btn btn-primary'/>
-        </form>
+            <div className='add-channel-dialogue-name-section'>
+              <label htmlFor='email' className='add-channel-purpose'> Email Address
+              </label>
+              <input ref={me => this.emailInput = me} id='email' />
+            </div>
+            <div className='add-channel-dialogue-name-section'>
+              <label htmlFor='handle' className='add-channel-purpose'> Handle
+              </label>
+              <input ref={me => this.handleInput = me} id='handle' />
+            </div>
+
+            <div className='add-channel-dialogue-name-section'>
+              <label htmlFor='handle' className='add-channel-purpose'> Password
+              </label>
+              <input ref={me => this.passwordInput = me} type='password' id='password' />
+            </div>
+
+            <div className='add-channel-dialogue-purpose-section'>
+              <label htmlFor='password1' className='add-channel-purpose'> Verify Password
+              </label>
+              <input ref={me => this.password1Input = me}  type='password' id='password1' />
+            </div>
+
+            <div className='add-channel-button-group'>
+              <button onClick={() => this.handleSignup()} className='add-channel-submit-button add-channel-button'>Let's Go!</button>
+              <button className='add-channel-cancel-button add-channel-button'>Cancel</button>
+            </div>
+          </div>
       </div>
     )
   }

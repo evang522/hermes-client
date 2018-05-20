@@ -49,35 +49,35 @@ export class Signup extends React.Component {
     return(
 
        <div className='add-channel-container'>
-        <div className='add-channel-dialogue-container'>
-            <div className='add-channel-dialogue-title'>
+        <div className='form-container'>
+            <div className='form-title'>
               Create an Account:
             </div>
 
-            <div className='add-channel-dialogue-name-section'>
+            <div className='form-name-section'>
               <label htmlFor='channelName' className='add-channel-name'> Your Name
               </label>
               <input ref={me => this.nameInput=me}  id='name'/>
             </div>
 
-            <div className='add-channel-dialogue-name-section'>
+            <div className='form-name-section'>
               <label htmlFor='email' className='add-channel-purpose'> Email Address
               </label>
               <input ref={me => this.emailInput = me} id='email' />
             </div>
-            <div className='add-channel-dialogue-name-section'>
+            <div className='form-name-section'>
               <label htmlFor='handle' className='add-channel-purpose'> Handle
               </label>
               <input ref={me => this.handleInput = me} id='handle' />
             </div>
 
-            <div className='add-channel-dialogue-name-section'>
+            <div className='form-name-section'>
               <label htmlFor='handle' className='add-channel-purpose'> Password
               </label>
               <input ref={me => this.passwordInput = me} type='password' id='password' />
             </div>
 
-            <div className='add-channel-dialogue-purpose-section'>
+            <div className='form-purpose-section'>
               <label htmlFor='password1' className='add-channel-purpose'> Verify Password
               </label>
               <input ref={me => this.password1Input = me}  type='password' id='password1' />

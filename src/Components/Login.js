@@ -20,17 +20,17 @@ export class Login extends React.Component {
     return(
 
       <div className='add-channel-container'>
-        <div className='add-channel-dialogue-container'>
-          <div className='add-channel-dialogue-title'>
+        <div className='form-container'>
+          <div className='form-title'>
             Log in to Hermes
           </div>
 
-          <div className='add-channel-dialogue-name-section'>
+          <div className='form-name-section'>
             <label htmlFor='identifier' className='add-channel-name'> Username or Handle
             </label>
             <input ref={me => this.identifierInput=me}  id='identifier' />
           </div>
-            <div className='add-channel-dialogue-purpose-section'>
+            <div className='form-purpose-section'>
               <label htmlFor='password' className='add-channel-purpose'> Password
               </label>
               <input type='password' ref={me => this.passwordInput = me} id='password' />

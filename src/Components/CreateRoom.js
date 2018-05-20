@@ -15,17 +15,17 @@ export class CreateRoom extends React.Component {
 
     return (
            <div className='add-channel-container'>
-        <div className='add-channel-dialogue-container'>
-          <div className='add-channel-dialogue-title'>
+        <div className='form-container'>
+          <div className='form-title'>
             Create a Room:
           </div>
 
-          <div className='add-channel-dialogue-name-section'>
+          <div className='form-name-section'>
             <label htmlFor='urlname' className='add-channel-name'> Room URL
             </label>
             <input ref={me => this.urlNameInput=me}  id='urlname' placeholder='# e.g. philosophytalk'/>
           </div>
-            <div className='add-channel-dialogue-purpose-section'>
+            <div className='form-purpose-section'>
               <label htmlFor='channelPurpose' className='add-channel-purpose'> Room Title
               </label>
               <input ref={me => this.roomNameInput = me} id='roomName' placeholder='What do you want to Call this Room?' />

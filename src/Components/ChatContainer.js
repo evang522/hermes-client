@@ -4,6 +4,11 @@ import ChatMessage from './ChatMessage';
 import {connect} from 'react-redux';
 
 export class ChatContainer  extends React.Component{
+
+  componentDidUpdate() {
+    this.chatContainer.scrollIntoView(false);
+  }
+
   render() {
     let channelMessages;
     if (this.props.messages) {
@@ -28,7 +33,7 @@ export class ChatContainer  extends React.Component{
           {this.props.channels.length && this.props.currentChannel ? this.props.channels.filter(chan => chan._id === this.props.currentChannel)[0].purpose : ''}
           </div>
         </header>
-        <section className='chat-container-body'>
+        <section className='chat-container-body' ref={me => this.chatContainer = me}>
         {chats ? chats: ''}
         </section>
       </section>

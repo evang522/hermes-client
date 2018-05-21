@@ -28,7 +28,7 @@ export class CreateRoom extends React.Component {
             <div className='form-purpose-section'>
               <label htmlFor='channelPurpose' className='add-channel-purpose'> Room Title
               </label>
-              <input ref={me => this.roomNameInput = me} id='roomName' placeholder='What do you want to Call this Room?' />
+              <input ref={me => this.roomNameInput = me} id='roomName' placeholder='What do you want to call this Room?' />
             </div>
             <div className='add-channel-button-group'>
               <button className='add-channel-cancel-button add-channel-button' onClick={() => this.props.dispatch(unsetAddingRoom())}>Cancel</button>

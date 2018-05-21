@@ -42,6 +42,11 @@ export const setAddingChannel = () => ({
   type:SET_ADDING_CHANNEL
 })
 
+export const CLEAR_ROOM_DATA = 'CLEAR_ROOM_DATA';
+export const clearRoomData = () => ({
+  type:CLEAR_ROOM_DATA
+})
+
 
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {retrieveRoomInfo, createChannel, setAddingChannel} from '../actions/room.actions';
+import {retrieveRoomInfo, createChannel, setAddingChannel, clearRoomData} from '../actions/room.actions';
 import ChatContainer from './ChatContainer';
 import MessageInput from './MessageInput';
 import ChannelName from './ChannelName';
@@ -14,7 +14,10 @@ export class Room extends React.Component {
     if (this.props.match) {
       this.props.dispatch(retrieveRoomInfo(this.props.match.params.roomName));
     }
-   
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearRoomData());
   }
 
 

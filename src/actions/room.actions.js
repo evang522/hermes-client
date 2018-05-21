@@ -190,9 +190,11 @@ export const populateRooms = () => (dispatch,getState) =>{
     'method':'GET'
   })
   .then(response => {
+    dispatch(clearLoading())
     dispatch(populateRoomList(response.data))
   })
   .catch(err => {
+    dispatch(clearLoading());
     dispatch(setError(err));
   })
   

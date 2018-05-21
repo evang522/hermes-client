@@ -10,7 +10,6 @@ export class ChannelName extends React.Component{
   
   render() {
 
-    console.log(this.props.channelId, this.props.id);
   return (
     <li className={`channel-name ${this.props.channelId === this.props.id ? 'selected-channel' : ''}`} onClick={e => this.onClick(e)} data-id={this.props.id}>{this.props.name ? this.props.name : ''}</li>
   )

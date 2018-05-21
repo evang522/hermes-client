@@ -4,7 +4,7 @@ import {retrieveRoomInfo, createChannel, setAddingChannel, clearRoomData} from '
 import ChatContainer from './ChatContainer';
 import MessageInput from './MessageInput';
 import ChannelName from './ChannelName';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Redirect} from 'react-router-dom';
 import './styles/Room.css';
 import AddChannel from './AddChannel';
 
@@ -38,6 +38,7 @@ export class Room extends React.Component {
     return (
 
         <main className='room-app-main'>
+          {this.props.redirectHome ? <Redirect to='/' /> : ''}
           {this.props.addingChannel ? <AddChannel/> : '' }
           <div className='sidebar-container'>
             <div className='room-title'>
@@ -75,7 +76,8 @@ const mapStateToProps = state => ({
   urlname: state.room.urlname,
   members: state.room.members,
   currentChannel: state.room.currentChannel,
-  addingChannel: state.room.addingChannel
+  addingChannel: state.room.addingChannel,
+  redirectHome: state.general.redirectHome
 });
 
 export default withRouter(connect(mapStateToProps)(Room));

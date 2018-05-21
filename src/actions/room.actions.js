@@ -81,6 +81,8 @@ export const setChannelAndUpdateMessages = channelId => (dispatch,getState) => {
   if (channelId) {
     dispatch(setCurrentChannel(channelId));
   }
+
+  dispatch(setLoading())
   axios({
     method:'GET',
     'url': `${API_URL}/messages?channelId=${channelId}`,
@@ -90,9 +92,12 @@ export const setChannelAndUpdateMessages = channelId => (dispatch,getState) => {
     }
   })
   .then(response => {
+    dispatch(clearLoading())
     dispatch(mergeNewMessages(response.data));
   })
   .catch(err => {
+
+    dispatch(clearLoading())
     setError(err);
   })
 }
@@ -107,6 +112,7 @@ export const addNewMessage = messageBody => (dispatch,getState) =>{
     body: messageBody,
   }
   
+  dispatch(setLoading());
 
   axios({
     url:`${API_URL}/messages?channelId=${getState().room.currentChannel}`,
@@ -118,9 +124,11 @@ export const addNewMessage = messageBody => (dispatch,getState) =>{
     method:'POST'
   })
   .then(response => {
+    dispatch(clearLoading())
     // dispatch(setChannelAndUpdateMessages(getState().room.currentChannel));
   })
   .catch(err => {
+    dispatch(clearLoading())
     dispatch(setError(err));
   })
 }
@@ -133,6 +141,7 @@ export const createChannel = (channelToAdd,purpose) => (dispatch,getState) => {
     channelToAdd,
     purpose
   }
+  dispatch(setLoading());
 
   axios({
     url: `${API_URL}/rooms/${getState().room.id}`,
@@ -144,9 +153,11 @@ export const createChannel = (channelToAdd,purpose) => (dispatch,getState) => {
     data:JSON.stringify(channelRequest)
   })
   .then(response => {
+    dispatch(clearLoading())
     dispatch(retrieveRoomInfo(getState().room.urlname));
   })
   .catch(err => {
+    dispatch(clearLoading())
     dispatch(setError(err))
   });
 }
@@ -154,7 +165,7 @@ export const createChannel = (channelToAdd,purpose) => (dispatch,getState) => {
 
 //================================== New Room ====================>
 export const createNewRoom = (urlname,title) => (dispatch,getState) => {
-
+  dispatch(setLoading())
   const requestBody = {
     urlname,
     title
@@ -170,9 +181,11 @@ export const createNewRoom = (urlname,title) => (dispatch,getState) => {
     }
   })
   .then(response => {
+    dispatch(clearLoading())
     dispatch(populateRooms());
   })
   .catch(err => {
+    dispatch(clearLoading())
     console.log(err);
   })
 }

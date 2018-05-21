@@ -1,4 +1,4 @@
-import {POPULATE_ROOM_DATA, SET_ADDING_CHANNEL, REMOVE_ADDING_CHANNEL, POPULATE_ROOM_LIST, MERGE_NEW_MESSAGES, SET_CURRENT_CHANNEL} from '../actions/room.actions';
+import {POPULATE_ROOM_DATA, SET_ADDING_CHANNEL, CLEAR_ROOM_DATA, REMOVE_ADDING_CHANNEL, POPULATE_ROOM_LIST, MERGE_NEW_MESSAGES, SET_CURRENT_CHANNEL} from '../actions/room.actions';
 
 const initialState = {
   title: null,
@@ -56,6 +56,19 @@ const roomReducer = (state=initialState, action) => {
         addingChannel:true
       }
       
+      case CLEAR_ROOM_DATA:
+      return {
+        ...state, 
+        title: null,
+        urlname: null,
+        channels: [],
+        created: null,
+        members: null,
+        id: null,
+        currentChannel:null,
+        messages:[],
+      }
+
       default:
       return state;
     }

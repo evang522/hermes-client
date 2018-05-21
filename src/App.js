@@ -7,14 +7,19 @@ import LandingPage from './Components/LandingPage';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import CreateRoom from './Components/CreateRoom';
 import Signup from './Components/Signup';
+import LoadingSpinner from './Components/LoadingSpinner';
+import {connect} from 'react-redux';
 
 class App extends Component {
   render() {
+
+    const loading =store.getState().general.loading;
     return (
       <Provider store={store}>
          <div className="App">
           <Router>
             <div>
+              {loading ? <LoadingSpinner/> : ''}
               <Route exact path='/' component={LandingPage} />
               <Switch>
               <Route exact path='/create' component={CreateRoom} />

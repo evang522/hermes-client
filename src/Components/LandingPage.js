@@ -10,6 +10,7 @@ import CreateRoom from './CreateRoom';
 import Signup from './Signup';
 import { setAddingRoom } from '../actions/general.actions';
 
+
 export class LandingPage extends React.Component {
 
   handleLoginClick = () => {
@@ -60,6 +61,6 @@ const mapStateToProps = state => ({
   authToken: state.auth.authToken,
   loggingIn: state.auth.loggingIn,
   addingRoom: state.general.addingRoom,
-  createAccountModal: state.auth.createAccountModal
+  createAccountModal: state.auth.createAccountModal,
 })
 export default connect(mapStateToProps)(LandingPage)

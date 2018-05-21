@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import ListofYourRooms from './ListofYourRooms';
 import './styles/LandingPage.css';
 import {logout, setLoggingIn, unsetLoggingIn, setCreateAccountModal} from '../actions/auth.actions';
+import {unsetRedirectHome} from '../actions/general.actions'
 import CreateRoom from './CreateRoom';
 import Signup from './Signup';
 import { setAddingRoom } from '../actions/general.actions';
@@ -19,6 +20,10 @@ export class LandingPage extends React.Component {
 
   removeLoginModal = () => {
     this.props.dispatch(unsetLoggingIn());
+  }
+
+  componentDidMount() {
+    this.props.dispatch(unsetRedirectHome());
   }
 
   render() {

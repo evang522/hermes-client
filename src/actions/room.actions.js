@@ -1,5 +1,6 @@
 //================================== Import Actions ====================>
-import {setLoading, setError, clearLoading} from './general.actions';
+import {setLoading, setError, clearLoading, setRedirectHome} from './general.actions';
+import {setLoggingIn} from './auth.actions';
 import {API_URL} from '../config';
 
 //================================== Require Dependencies ====================>
@@ -71,6 +72,13 @@ export const retrieveRoomInfo = (urlname) => (dispatch,getState) => {
     dispatch(clearLoading());
   })
   .catch(err => {
+    if (err.response.status === 403) {
+      dispatch(setRedirectHome());
+      dispatch(setLoggingIn());
+    }
+    if (err.response.status === 400) {
+      dispatch(setRedirectHome());
+    }
     dispatch(clearLoading());
     dispatch(setError(err));
   })

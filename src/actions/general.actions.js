@@ -24,3 +24,14 @@ export const UNSET_ADDING_ROOM = 'UNSET_ADDING_ROOM';
 export const unsetAddingRoom = () => ({
   type: UNSET_ADDING_ROOM
 })
+
+
+export const SET_REDIRECT_HOME = 'SET_REDIRECT_HOME';
+export const setRedirectHome = () => ({
+  type:SET_REDIRECT_HOME
+})
+
+export const UNSET_REDIRECT_HOME = 'UNSET_REDIRECT_HOME';
+export const unsetRedirectHome = () => ({
+  type:UNSET_REDIRECT_HOME
+})

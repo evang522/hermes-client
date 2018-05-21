@@ -1,10 +1,11 @@
-import  {SET_LOADING, SET_ERROR, CLEAR_LOADING, SET_ADDING_ROOM, UNSET_ADDING_ROOM} from '../actions/general.actions';
+import  {SET_LOADING, SET_ERROR, CLEAR_LOADING, SET_ADDING_ROOM, UNSET_ADDING_ROOM, SET_REDIRECT_HOME, UNSET_REDIRECT_HOME} from '../actions/general.actions';
 
 
 const initialState = {
   loading:false,
   error:null,
-  addingRoom:false
+  addingRoom:false,
+  redirectHome:false
 }
 
 const generalReducer = (state=initialState, action) => {
@@ -37,6 +38,18 @@ const generalReducer = (state=initialState, action) => {
       return {
         ...state, 
         addingRoom:false
+      }
+
+      case SET_REDIRECT_HOME:
+      return {
+        ...state, 
+        redirectHome:true,
+      }
+
+      case UNSET_REDIRECT_HOME:
+      return {
+        ...state,
+        redirectHome:false
       }
 
       default:

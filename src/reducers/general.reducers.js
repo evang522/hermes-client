@@ -34,7 +34,6 @@ const generalReducer = (state=initialState, action) => {
       }
 
       case UNSET_ADDING_ROOM:
-      console.log('reducer ran');
       return {
         ...state, 
         addingRoom:false

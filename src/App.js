@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import {Provider} from 'react-redux';
-import store from './store.js';
 import './App.css';
 import Room from './Components/Room.js';
 import LandingPage from './Components/LandingPage';
@@ -12,14 +10,12 @@ import {connect} from 'react-redux';
 
 class App extends Component {
   render() {
-
-    const loading =store.getState().general.loading;
     return (
-      <Provider store={store}>
+
          <div className="App">
           <Router>
             <div>
-              {loading ? <LoadingSpinner/> : ''}
+              {this.props.loading ? <LoadingSpinner/> : ''}
               <Route exact path='/' component={LandingPage} />
               <Switch>
               <Route exact path='/create' component={CreateRoom} />
@@ -30,9 +26,13 @@ class App extends Component {
             </div>
           </Router> 
          </div>
-      </Provider>
+
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  loading: state.general.loading
+});
+
+export default connect(mapStateToProps)(App);

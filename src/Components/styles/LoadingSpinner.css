@@ -5,6 +5,14 @@
   left:0;
   right:0;
   bottom:0;
+  animation: fadeInSpinner .6s linear;
+}
+
+
+@keyframes fadeInSpinner {
+  0% {opacity:0;}
+  90% {opacity:.01}
+  100% {opacity:1}
 }
 
 
@@ -29,6 +37,7 @@
   transform: translateZ(0);
   -webkit-animation: load8 .7s infinite linear;
   animation: load8 .7s infinite linear;
+  z-index:200
 }
 @-webkit-keyframes load8 {
   0% {
@@ -50,3 +59,4 @@
     transform: rotate(360deg);
   }
 }
+

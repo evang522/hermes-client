@@ -26,7 +26,7 @@ export class Login extends React.Component {
           </div>
 
           <div className='form-name-section'>
-            <label htmlFor='identifier' className='add-channel-name'> Username or Handle
+            <label htmlFor='identifier' className='add-channel-name'> Email or Handle
             </label>
             <input ref={me => this.identifierInput=me}  id='identifier' />
           </div>

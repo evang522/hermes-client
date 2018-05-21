@@ -5,9 +5,11 @@ import './styles/LoadingSpinner.css';
 
 export default class LoadingSpinner extends React.Component {
   render() {
+    console.log('Loader mounted');
+    
     return (
       <div className='loader-container'>
-        <div class="loader">Loading...</div>
+        <div className="loader">Loading...</div>
       </div>
     )
   }

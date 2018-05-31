@@ -68,3 +68,15 @@ Link to Server Repo [Here.](https://github.com/evang522/chatapp-server)
   * If the request type is removeChannel, the channel with a specified name is removed'
 * `DELETE /rooms/:id`
   * Deletes a room with a specified ID.
+
+
+
+  ## Screenshots
+
+### Home Page
+![alt text](http://evanhgarrett.com/src/img/hermesrooms.png "Logo Title Text 1")
+
+### Hermes Chat Room
+![alt text](http://evanhgarrett.com/src/img/hermes.png "Logo Title Text 1")
+
+
